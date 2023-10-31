@@ -11,10 +11,14 @@ public class IntroToEncapsulation {
 		 */
 
 		// 1. Create a Vehicle object.
+		Vehicle vehicle = new Vehicle();
 
 		// 2. Use the vehicle's setters to change fuelTankCapacity and mpg.
-
+		vehicle.fuelTankCapacity = 15;
+		vehicle.mpg = 35;
+		
 		// 3. Call setFuelInTank with an amount greater than the capacity.
+		vehicle.setFuelInTank(5);
 
 		// Note: The reason setFuelInTank doesn't show up is because it's private.
 
@@ -22,20 +26,33 @@ public class IntroToEncapsulation {
 		// Hint: Access modifiers are described at the top of the Vehicle class.
 
 		// 5. Create a setter for the vehicle's color then set its color using it.
+		vehicle.color = "Blue";
 
 		// 6. Create local variables for fuelTankCapacity, fuelInTank and mpg.
+		
+		int fuelCap = vehicle.fuelTankCapacity;
+		int fuel = vehicle.getFuelInTank();
+		int miles = vehicle.getMpg();
+		String vehColor = vehicle.getColor();
+		
 
 		// 7. Use the vehicle's getters to initialize all of them.
 		// Note: You may need to fix some access modifiers.
-
+		
 		// 8. Create a getter for color and do the same thing you did for steps 6 & 7.
-
+				
 		// 9. Print out all the local variables.
+//		System.out.println(fuelCap + "  " + fuel + "  " + miles + "  " + vehColor);
 
 		// 10. If you haven't already, completely encapsulate the Vehicle class.
 		// Hint: Make all member variables private and all getters/setters public.
 
 		// 11. Drive the vehicle until it runs out of gas.
+		while (vehicle.fuelInTank > 0) {
+			vehicle.drive();
+		}
+		
+		
 	}
 
 }
@@ -50,7 +67,7 @@ class Vehicle {
 
 	// private makes the member accessible only within the class.
 
-	private int fuelInTank;
+	int fuelInTank;
 
 	// protected makes the member accessible only to subclasses and the package.
 
@@ -77,7 +94,7 @@ class Vehicle {
 		}
 	}
 
-	private void setFuelInTank(int fuelInTank) {
+	public void setFuelInTank(int fuelInTank) {
 		if (fuelInTank >= 0 && fuelInTank <= fuelTankCapacity) {
 			this.fuelInTank = fuelInTank;
 		} else {
@@ -92,12 +109,16 @@ class Vehicle {
 		return fuelTankCapacity;
 	}
 
-	private int getFuelInTank() {
+	int getFuelInTank() {
 		return fuelInTank;
 	}
 
 	int getMpg() {
 		return mpg;
+	}
+	
+	String getColor() {
+		return color;
 	}
 
 	public void drive() {
